@@ -27,7 +27,7 @@ $TableTemplate = @'
     </div>
 '@
 function New-Report {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     [CmdletBinding()]
     param(
         # The template to use for the report (must exist in templates folder)
