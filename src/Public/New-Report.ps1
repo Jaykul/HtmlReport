@@ -107,7 +107,9 @@ function New-Report {
 
         if($InputObject -is [Table]) {
             $Data = $Data | Microsoft.PowerShell.Utility\ConvertTo-Html -As Table -Fragment
-            $Data = $Data | Microsoft.PowerShell.Utility\Select-Object -Skip 1 -First ($Data.Count -2)
+            # Make sure each row is on a line, and the headers are called out properly
+            Write-Verbose "Table with $($Data.Count) rows of data."
+            $Data = "<thead>`n{0}`n</thead>`n<tbody>`n{1}`n</tbody>" -f $Data[2], ($Data[3..($Data.Count - 2)] -join "`n")
 
             $Table = $TableTemplate -replace '\${Title}', $InputObject.Title `
                                     -replace '\${Description}', $InputObject.Description `
@@ -117,6 +119,7 @@ function New-Report {
             $FinalTable += $Table
         }
         if($InputObject -is [Chart]) {
+            Write-Verbose "$ChartType Chart with $($Data.Count) data.points"
             if($Data -isnot [string]) {
                 # Microsoft's ConvertTo-Json doesn't handle PSObject unwrapping properly
                 # https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/15123162-convertto-json-doesn-t-serialize-simple-objects-pr
