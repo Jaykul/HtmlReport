@@ -1,4 +1,14 @@
 function New-Table {
+    #.Synopsis
+    #   Creates a new TableData object for rendering in New-Report
+    #.Example
+    #   Get-ChildItem C:\Users -Directory | 
+    #       Select LastWriteTime, @{Name="Length"; Expression={ 
+    #           (Get-ChildItem $_.FullName -Recurse -File -Force | Measure Length -Sum).Sum
+    #       } }, Name |
+    #       New-Table -Title $Pwd -Description "Full file listing from $($Pwd.Name)"
+    #
+    #   Collect the list of user directories and measure the size of each
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     [CmdletBinding()]
     param(

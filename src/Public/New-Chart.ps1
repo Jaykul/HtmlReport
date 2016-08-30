@@ -1,4 +1,11 @@
 function New-Chart {
+    #.Synopsis
+    #   Creates a new ChartData for New-Report
+    #.Description
+    #   Collects ChartData for New-Report.
+    #   ChartData should be in specific shapes in order to work properly, but it depends somewhat on the chart type you're trying to create (LineChart, PieChart, ColumnChart, BarChart, AreaChart, ScatterChart, GeoChart, Timeline). There should be examples for each in the help below...  
+    #.Notes
+    #   TODO: Write examples...
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     [CmdletBinding()]
     param(
